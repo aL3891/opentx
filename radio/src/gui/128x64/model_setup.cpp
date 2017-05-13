@@ -71,6 +71,7 @@ enum MenuModelSetupItems {
 #if defined(MULTIMODULE)
   ITEM_MODEL_EXTERNAL_MODULE_SUBTYPE,
   ITEM_MODEL_EXTERNAL_MODULE_STATUS,
+  ITEM_MODEL_EXTERNAL_MODULE_SYNCSTATUS,
 #endif
   ITEM_MODEL_EXTERNAL_MODULE_CHANNELS,
   ITEM_MODEL_EXTERNAL_MODULE_BIND,
@@ -210,7 +211,7 @@ void menuModelSetup(event_t event)
   LABEL(ExternalModule),
   EXTERNAL_MODULE_MODE_ROWS,
   MULTIMODULE_SUBTYPE_ROWS(EXTERNAL_MODULE)
-  MULTIMODULE_STATUS_ROW
+  MULTIMODULE_STATUS_ROWS
   EXTERNAL_MODULE_CHANNELS_ROWS,
   EXTERNAL_MODULE_BIND_ROWS(),
   OUTPUT_TYPE_ROWS()
@@ -223,7 +224,7 @@ void menuModelSetup(event_t event)
   LABEL(ExternalModule),
   EXTERNAL_MODULE_MODE_ROWS,
   MULTIMODULE_SUBTYPE_ROWS(EXTERNAL_MODULE)
-  MULTIMODULE_STATUS_ROW
+  MULTIMODULE_STATUS_ROWS
   EXTERNAL_MODULE_CHANNELS_ROWS,
   EXTERNAL_MODULE_BIND_ROWS(),
   OUTPUT_TYPE_ROWS()
@@ -1039,7 +1040,14 @@ void menuModelSetup(event_t event)
       lcdDrawText(MODEL_SETUP_2ND_COLUMN, y, statusText);
       break;
     }
+    case ITEM_MODEL_EXTERNAL_MODULE_SYNCSTATUS: {
+      lcdDrawTextAlignedLeft(y, STR_MODULE_SYNC);
 
+      char statusText[64];
+      multiSyncStatus.getRefreshString(statusText);
+      lcdDrawText(MODEL_SETUP_2ND_COLUMN, y, statusText);
+      break;
+    }
 #endif
 #endif
 

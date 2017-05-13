@@ -71,6 +71,7 @@ enum MenuModelSetupItems {
   ITEM_MODEL_EXTERNAL_MODULE_MODE,
 #if defined(MULTIMODULE)
   ITEM_MODEL_EXTERNAL_MODULE_STATUS,
+  ITEM_MODEL_EXTERNAL_MODULE_SYNCSTATUS,
 #endif
   ITEM_MODEL_EXTERNAL_MODULE_CHANNELS,
   ITEM_MODEL_EXTERNAL_MODULE_BIND,
@@ -258,7 +259,7 @@ bool menuModelSetup(event_t event)
          IF_INTERNAL_MODULE_ON(0),
          LABEL(ExternalModule),
          EXTERNAL_MODULE_MODE_ROWS,
-         MULTIMODULE_STATUS_ROW
+         MULTIMODULE_STATUS_ROWS
          EXTERNAL_MODULE_CHANNELS_ROWS,
          (IS_MODULE_XJT(EXTERNAL_MODULE) && !HAS_RF_PROTOCOL_MODELINDEX(g_model.moduleData[EXTERNAL_MODULE].rfProtocol)) ? (uint8_t)1 : (IS_MODULE_PPM(EXTERNAL_MODULE) || IS_MODULE_XJT(EXTERNAL_MODULE) || IS_MODULE_DSM2(EXTERNAL_MODULE) || IS_MODULE_MULTIMODULE(EXTERNAL_MODULE)) ? (uint8_t)2 : HIDDEN_ROW,
          FAILSAFE_ROWS(EXTERNAL_MODULE), MULTIMODULE_MODULE_ROWS
@@ -947,6 +948,14 @@ bool menuModelSetup(event_t event)
       multiModuleStatus.getStatusString(statusText);
       lcdDrawText(MODEL_SETUP_2ND_COLUMN, y, statusText);
       break;
+    case ITEM_MODEL_EXTERNAL_MODULE_SYNCSTATUS: {
+      lcdDrawText(MENUS_MARGIN_LEFT, y, STR_MODULE_SYNC);
+
+      char statusText[64];
+      multiSyncStatus.getRefreshString(statusText);
+      lcdDrawText(MODEL_SETUP_2ND_COLUMN, y, statusText);
+      break;
+      }
     }
 #endif
     }
