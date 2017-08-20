@@ -31,7 +31,7 @@
                                              11 /*SLIDER1*/, 12 /*SLIDER2*/, 7 /*SLIDER3*/, 8 /*SLIDER4*/,
                                              9 /*TX_VOLTAGE*/ };
 #elif defined(PCBX9DP)
-  int8_t ana_direction[NUM_ANALOGS] = {1,-1,1,-1,  1,1,-1,  1,1,  1};
+  int8_t ana_direction[NUM_ANALOGS] = {1,-1,1,-1,  -1,1,-1,  -1,1,  1};
 #elif defined(PCBX7)
   int8_t ana_direction[NUM_ANALOGS] = {-1,1,-1,1,  1,1,  1};
 #elif defined(REV4a)
