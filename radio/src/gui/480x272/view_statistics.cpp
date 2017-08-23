@@ -186,6 +186,10 @@ bool menuStatsAnalogs(event_t event)
 
   }
 
+  // UART statistics
+  lcdDrawText(MENUS_MARGIN_LEFT, MENU_CONTENT_TOP+8*FH, "Telmetry UART Errs:");
+  lcdDrawNumber(MENUS_MARGIN_LEFT+200, MENU_CONTENT_TOP+8*FH, telemetryErrors, RIGHT);
+
   return true;
 }
 

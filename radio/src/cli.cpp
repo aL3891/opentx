@@ -1126,9 +1126,8 @@ int cliDebugVars(const char ** argv)
   serialPrint("ioMutexReq=%d", ioMutexReq);
   serialPrint("ioMutexRel=%d", ioMutexRel);
   serialPrint("sdReadRetries=%d", sdReadRetries);
-#elif defined(PCBTARANIS)
-  serialPrint("telemetryErrors=%d", telemetryErrors);
 #endif
+  serialPrint("telemetryErrors=%d", telemetryErrors);
 
   return 0;
 }

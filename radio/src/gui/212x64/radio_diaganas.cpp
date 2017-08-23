@@ -40,6 +40,9 @@ void menuRadioDiagAnalogs(event_t event)
     lcdDrawNumber(x+10*FW-1, y, (int16_t)calibratedAnalogs[CONVERT_MODE(i)]*25/256, RIGHT);
 #endif
   }
+  // UART statistics
+  lcdDrawTextAlignedLeft(MENU_HEADER_HEIGHT+5*FH, "Tlm UART Errs:");
+  lcdDrawNumber(17*FW-1, MENU_HEADER_HEIGHT+5*FH, telemetryErrors, RIGHT);
 
   // SWR
   if((IS_MODULE_XJT(INTERNAL_MODULE) && IS_INTERNAL_MODULE_ON()) || (IS_MODULE_PXX(EXTERNAL_MODULE) && !IS_INTERNAL_MODULE_ON())) {
@@ -47,6 +50,5 @@ void menuRadioDiagAnalogs(event_t event)
     lcdDrawNumber(10*FW-1, MENU_HEADER_HEIGHT+6*FH, telemetryData.swr.value, RIGHT);
     lcdDrawText(LCD_W/2, MENU_HEADER_HEIGHT+6*FH, "XJTVER");
     lcdDrawNumber(LCD_W/2 + 10*FW-1, MENU_HEADER_HEIGHT+6*FH, telemetryData.xjtVersion, RIGHT);
-
   }
 }
